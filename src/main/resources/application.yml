@@ -1,0 +1,67 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: expense-tracker-api
+
+  data:
+    mongodb:
+      uri: ${MONGODB_URI}
+      database: expense_tracker
+
+  cache:
+    type: simple
+
+  mail:
+    host: smtp.sendgrid.net
+    port: 587
+    username: apikey
+    password: ${SENDGRID_API_KEY}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 5MB
+      max-request-size: 5MB
+
+app:
+  jwt:
+    secret: ${JWT_SECRET}
+    expiration: 86400000
+    refresh-expiration: 604800000
+
+  file:
+    upload-dir: ./uploads/receipts
+    max-size: 5242880
+    allowed-types: image/jpeg,image/png,application/pdf
+
+  currency:
+    api-key: ${EXCHANGE_RATE_API_KEY}
+    base-url: https://v6.exchangerate-api.com/v6
+
+  rate-limit:
+    requests-per-minute: 100
+
+  mail:
+    from-email: ${MAIL_FROM_EMAIL}
+    from-name: Expense Tracker
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+
+logging:
+  level:
+    root: INFO
+    com.expensetracker: DEBUG
+    org.springframework.data.mongodb: DEBUG
