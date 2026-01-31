@@ -27,6 +27,8 @@ uploads/
 # Environment files (IMPORTANT - keeps secrets safe)
 .env
 *.env
+application-local.yml
+**/application-local.yml
 
 # Build files
 build/

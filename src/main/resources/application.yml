@@ -7,7 +7,7 @@ spring:
 
   data:
     mongodb:
-      uri: ${MONGODB_URI}
+      uri: ${MONGODB_URI:mongodb://localhost:27017/expense_tracker}
       database: expense_tracker
 
   cache:
@@ -17,7 +17,7 @@ spring:
     host: smtp.sendgrid.net
     port: 587
     username: apikey
-    password: ${SENDGRID_API_KEY}
+    password: ${SENDGRID_API_KEY:your-sendgrid-api-key}
     properties:
       mail:
         smtp:
@@ -33,7 +33,7 @@ spring:
 
 app:
   jwt:
-    secret: ${JWT_SECRET}
+    secret: ${JWT_SECRET:your-jwt-secret-key-minimum-256-bits-long}
     expiration: 86400000
     refresh-expiration: 604800000
 
@@ -43,14 +43,14 @@ app:
     allowed-types: image/jpeg,image/png,application/pdf
 
   currency:
-    api-key: ${EXCHANGE_RATE_API_KEY}
+    api-key: ${EXCHANGE_RATE_API_KEY:your-exchange-rate-api-key}
     base-url: https://v6.exchangerate-api.com/v6
 
   rate-limit:
     requests-per-minute: 100
 
   mail:
-    from-email: ${MAIL_FROM_EMAIL}
+    from-email: ${MAIL_FROM_EMAIL:your-verified-email@example.com}
     from-name: Expense Tracker
 
 springdoc:
